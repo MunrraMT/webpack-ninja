@@ -13,3 +13,5 @@ function buttonClicked() {
     ul.appendChild(tempEl);
   });
 }
+
+document.querySelector('#button-1').addEventListener('click', buttonClicked);
