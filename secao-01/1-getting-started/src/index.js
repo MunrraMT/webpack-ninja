@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 function buttonClicked() {
   const el = document.querySelector('#header');
   el.innerHTML = 'Hey i have updated the code!';
