@@ -14,6 +14,7 @@
     "@types/bootstrap": "^5.2.4",
     "@types/jquery": "^3.5.14",
     "@types/toastr": "^2.1.40",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.55.0",

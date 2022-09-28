@@ -1,5 +1,6 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,24 +11,34 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'assets/[hash][ext]',
   },
   devServer: {
     static: ['dist'],
     open: true,
   },
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
       chunks: ['index'],
       inject: true,
     }),
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'courses.html',
       template: './src/pages/courses.html',
       chunks: 'courses',
       inject: true,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path
+            .resolve(__dirname, 'src/assets/images/*')
+            .replace(/\\/g, '/'),
+          to: path.resolve(__dirname, 'dist'),
+          context: 'src',
+        },
+      ],
     }),
   ],
   module: {
