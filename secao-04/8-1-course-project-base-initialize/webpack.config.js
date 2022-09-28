@@ -10,6 +10,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    assetModuleFilename: 'assets/[hash][ext]',
   },
   devServer: {
     static: ['dist'],
@@ -44,7 +45,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpeg|svg)$/,
+        test: /\.(png|jpeg|jpg|gif|svg)$/,
         type: 'asset/resource',
       },
       {
