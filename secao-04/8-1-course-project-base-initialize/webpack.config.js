@@ -10,7 +10,6 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: 'images/[hash][ext]',
   },
   devServer: {
     static: ['dist'],
@@ -34,16 +33,13 @@ module.exports = {
     rules: [
       {
         test: /\.(css)$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true } },
-        ],
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.s[ca]ss/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true } },
+          { loader: 'css-loader' },
           { loader: 'sass-loader' },
         ],
       },

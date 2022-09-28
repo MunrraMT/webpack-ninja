@@ -151,7 +151,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jquery@^3.5.14":
+"@types/jquery@*", "@types/jquery@^3.5.14":
   version "3.5.14"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.14.tgz#ac8e11ee591e94d4d58da602cb3a5a8320dee577"
   integrity sha512-X1gtMRMbziVQkErhTQmSe2jFwwENA/Zr+PprCkF63vFq+Yt5PZ4AlKqgmeNlwgn7dhsXEK888eIW2520EpC+xg==
@@ -214,6 +214,13 @@
   integrity sha512-f0KEEe05NvUnat+boPTZ0dgaLZ4SfSouXUgv5noUiefG2ajgKjmETo9ZJyuqsl7dfl2aHlLJUiki6B4ZYldiiw==
   dependencies:
     "@types/node" "*"
+
+"@types/toastr@^2.1.40":
+  version "2.1.40"
+  resolved "https://registry.yarnpkg.com/@types/toastr/-/toastr-2.1.40.tgz#96d006198ff70285c52a6fb675d129b8ae6b4bc0"
+  integrity sha512-i/AL6/g8Jiraz/Ev1jG4oYw95kshz4yLbP7GvY5T0cfUrs1mbsE7v4DpOYdg54wCMmcWrCGzQOOWW5upIogMrQ==
+  dependencies:
+    "@types/jquery" "*"
 
 "@types/ws@^8.5.1":
   version "8.5.3"
