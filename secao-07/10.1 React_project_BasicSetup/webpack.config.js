@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   mode: 'development',
@@ -14,13 +15,15 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html',
     }),
+    new MiniCssExtractPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
-      port: 9000,
-      open: true,
     },
+    port: 9000,
+    open: true,
   },
   module: {
     rules: [
@@ -38,8 +41,29 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|jpeg|gif|svg)$/,
-        use: 'asset/resource',
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        include: path.resolve(__dirname, 'src'),
+        exclude: path.resolve(__dirname, 'node_modules'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', { targets: 'defaults' }],
+                '@babel/preset-react',
+              ],
+            },
+          },
+        ],
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
 };
