@@ -1,6 +1,8 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'development',
   devServer: {
     static: './dist',
@@ -18,4 +20,4 @@ module.exports = {
     ],
   },
   plugins: [new BundleAnalyzerPlugin({})],
-};
+});

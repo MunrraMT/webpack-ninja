@@ -3,12 +3,14 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const glob = require('glob');
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
 };
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'production',
   module: {
     rules: [
@@ -40,4 +42,4 @@ module.exports = {
     // }),
     new MiniCssExtractPlugin(),
   ],
-};
+});
