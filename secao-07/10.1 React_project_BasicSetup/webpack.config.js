@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const EsLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -17,6 +18,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
     new BundleAnalyzerPlugin(),
+    new EsLintPlugin(),
   ],
   devServer: {
     static: {
@@ -77,6 +79,12 @@ module.exports = {
                 ['@babel/preset-env', { targets: 'defaults' }],
                 '@babel/preset-react',
               ],
+            },
+          },
+          {
+            loader: 'eslint-loader',
+            options: {
+              fix: true,
             },
           },
         ],
