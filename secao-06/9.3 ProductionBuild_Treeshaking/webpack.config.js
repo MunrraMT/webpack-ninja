@@ -15,9 +15,10 @@ module.exports = {
   entry: {
     index: './src/index.js',
     courses: './src/pages/courses.js',
+    vendor: './src/vendor.js',
   },
   output: {
-    filename: '[contenthash].js',
+    filename: '[name][contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -45,18 +46,15 @@ module.exports = {
       mnt: 'moment',
       $: 'jquery',
       _: 'lodash',
-      Typed: 'typed.js',
-      validate: 'validate.js',
-      toastr: 'toastr',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      chunks: ['index'],
+      chunks: ['index', 'vendor'],
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       template: './src/pages/courses.html',
-      chunks: ['courses'],
+      chunks: ['courses', 'vendor'],
       filename: 'courses.html',
       base: 'pages',
     }),
@@ -71,10 +69,10 @@ module.exports = {
         },
       ],
     }),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      safelist: ['dummy-css'],
-    }),
+    // new PurgeCSSPlugin({
+    //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+    //   only: ['vendor'],
+    // }),
     new BundleAnalyzerPlugin({}),
     new MiniCssExtractPlugin(),
   ],
