@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
+
+const MovieCard = lazy(() => import('components/MovieCard'));
+
 import QuickBooking from '../QuickBooking/QuickBooking.jsx';
 import './HomeContent.scss';
 
@@ -28,7 +31,9 @@ const HomeContent = (props) => {
       return (
         <div onClick={() => movieClicked(item)} key={item.name}>
           <div>Load the cards Here</div>
-          {/* Load the Movie Card Here */}
+          <Suspense fallback={null}>
+            <MovieCard />
+          </Suspense>
         </div>
       );
     });
