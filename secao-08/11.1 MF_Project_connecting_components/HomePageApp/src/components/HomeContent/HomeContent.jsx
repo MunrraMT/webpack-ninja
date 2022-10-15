@@ -7,16 +7,17 @@ import './HomeContent.scss';
 
 const dummyItem = [{ name: 'Dummy Movie' }];
 
-const fetchMovies = async () => {
-  const response = await fetch('http://localhost:5555/movies');
-  const data = await response.json();
-  console.log(data);
-};
-
 const HomeContent = (props) => {
   const [movies, setMovies] = useState(dummyItem);
 
   useEffect(() => {
+    const fetchMovies = async () => {
+      const response = await fetch('http://localhost:5555/movies');
+      const data = await response.json();
+      setMovies(data);
+      console.log(data);
+    };
+
     fetchMovies();
   }, []);
 
@@ -30,10 +31,7 @@ const HomeContent = (props) => {
     let items = movies.map((item) => {
       return (
         <div onClick={() => movieClicked(item)} key={item.name}>
-          <div>Load the cards Here</div>
-          <Suspense fallback={null}>
-            <MovieCard />
-          </Suspense>
+          <MovieCard title={item.name} imageUrl={item.imageUrl} />
         </div>
       );
     });
@@ -44,7 +42,9 @@ const HomeContent = (props) => {
   return (
     <div className="home-content-container">
       <QuickBooking></QuickBooking>
-      <div className="movies-container">{renderMovieList()}</div>
+      <div className="movies-container">
+        <Suspense fallback={null}>{renderMovieList()}</Suspense>
+      </div>
     </div>
   );
 };
