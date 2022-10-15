@@ -43,7 +43,7 @@ const HomeContent = (props) => {
     <div className="home-content-container">
       <QuickBooking></QuickBooking>
       <div className="movies-container">
-        <Suspense fallback={null}>{renderMovieList()}</Suspense>
+        <Suspense fallback={<p>Loading...</p>}>{renderMovieList()}</Suspense>
       </div>
     </div>
   );
